@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Task Management System2</string>
+    <string name="labelName">Task Board</string>
+    <string name="addBtnDes">Add Btn Des</string>
+    <string name="taskId">Task Id : </string>
+    <string name="taskIdHint">1</string>
+    <string name="taskName">Task Name : </string>
+    <string name="taskNameHint">Assignment submission</string>
+    <string name="taskDes">Description : </string>
+    <string name="taskDesHint">DSA</string>
+    <string name="taskPriority">Priority : </string>
+    <string name="taskPriorityHint">1</string>
+    <string name="taskDeadline">Deadline : </string>
+    <string name="taskDeadlineHint">Enter the date</string>
+    <string name="add">Add</string>
+    <string name="view">View</string>
+    <string name="edit">Update</string>
+    <string name="delete">Delete</string>
+</resources>
