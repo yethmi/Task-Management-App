@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/taskDeadlineHint"
-        android:inputType="date"
+        android:inputType="text"
         android:minHeight="48dp"
         android:textColorHint="#546E7A"
         tools:ignore="Autofill,TextFields" />
