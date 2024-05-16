@@ -11,6 +11,11 @@ class FirstPage : AppCompatActivity() {
         setContentView(R.layout.activity_first_page)
     }
 
+    fun openHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
     fun openHome(view: View) {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

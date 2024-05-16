@@ -34,10 +34,13 @@ class TaskAdapter(private var tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
 
     override fun getItemCount() = tasks.size
 
-    // Method to update the tasks list and refresh the RecyclerView
     @SuppressLint("NotifyDataSetChanged")
     fun updateTasks(newTasks: List<Task>) {
         tasks = newTasks
-        notifyDataSetChanged() // Notifies the adapter to rebind and display new data
+        notifyDataSetChanged()
     }
+    interface OnItemClickListener {
+        fun onItemClick(task: Task)
+    }
+
 }

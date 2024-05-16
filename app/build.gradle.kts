@@ -51,6 +51,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation ("androidx.activity:activity-ktx:1.3.0")
 
     implementation("androidx.annotation:annotation:1.7.1")
     val room_version = "2.6.1"

@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Task Management System2</string>
+    <string name="app_name">Task Management System</string>
     <string name="labelName">Task Board</string>
     <string name="addBtnDes">Add Btn Des</string>
-    <string name="taskId">Task Id : </string>
+    <string name="taskId">Id: </string>
     <string name="taskIdHint">1</string>
     <string name="taskName">Task Name : </string>
-    <string name="taskNameHint">Assignment submission</string>
+    <string name="taskNameHint">Task</string>
     <string name="taskDes">Description : </string>
     <string name="taskDesHint">DSA</string>
     <string name="taskPriority">Priority : </string>

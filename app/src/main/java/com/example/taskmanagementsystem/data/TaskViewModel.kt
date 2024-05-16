@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
+
+    val allTasks: LiveData<List<Task>> = repository.allTasks
     fun insertTask(task: Task) {
         viewModelScope.launch {
             repository.insertTask(task)
@@ -24,10 +26,20 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
-    suspend fun getAllTasks(): List<Task> {
-        return repository.getAllTasks()
-    }
-
-    //val allTasks: LiveData<List<Task>> = repository.getAllTasks().asLiveData()
-
 }
+
+
+
+//    suspend fun getAllTasks(): List<Task> {
+//        return repository.getAllTasks()
+//    }
+//val allTasks: LiveData<List<Task>> = repository.getAllTasks().asLiveData()
+//val allTasks = repository.allTasks
+
+// Method to force a refresh of the tasks
+//    fun refreshTasks() {
+//        viewModelScope.launch {
+//            allTasks.value = repository.getAllTasks()
+//        }
+//    }
+//val allTasks: LiveData<List<Task>> = repository.getAllTasks().asLiveData()

@@ -1,5 +1,7 @@
 package com.example.taskmanagementsystem.data
 
+import androidx.lifecycle.LiveData
+
 class TaskRepository(private val taskDao: TaskDAO) {
     suspend fun insertTask(task: Task) {
         taskDao.insertTask(task)
@@ -13,7 +15,8 @@ class TaskRepository(private val taskDao: TaskDAO) {
         taskDao.deleteTask(taskId)
     }
 
-    suspend fun getAllTasks(): List<Task> {
-        return taskDao.getAllTasks()
-    }
+//    suspend fun getAllTasks(): List<Task> {
+//        return taskDao.getAllTasks()
+//    }
+val allTasks: LiveData<List<Task>> = taskDao.getAllTasks()
 }
