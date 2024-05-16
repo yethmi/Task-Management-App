@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/label_book_library_system"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/yellow"
+        android:background="@color/peach"
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
         android:text="@string/labelName"
@@ -26,44 +25,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TableLayout
         android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_book_library_system"
         app:layout_constraintTop_toTopOf="parent">
-
-        <!--        <TableRow-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            tools:ignore="UselessParent">-->
-
-        <!--            <TextView-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_column="1"-->
-        <!--                android:layout_marginStart="@dimen/_10dp"-->
-        <!--                android:text="@string/bookId"-->
-        <!--                android:textSize="15sp" />-->
-
-        <!--            <EditText-->
-        <!--                android:id="@+id/book_id"-->
-        <!--                android:layout_width="290dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginStart="20sp"-->
-        <!--                android:width="150dp"-->
-        <!--                android:autofillHints="B001"-->
-        <!--                android:hint="@string/bookIdHint"-->
-        <!--                android:textSize="20sp"-->
-        <!--                tools:ignore="LabelFor,TextFields" />-->
-        <!--        </TableRow>-->
 
         <TableRow
             android:layout_width="match_parent"
@@ -166,15 +141,14 @@
 
             <EditText
                 android:id="@+id/task_deadline"
+                android:autofillHints="@string/taskDeadlineHint"
+                android:hint="@string/taskDeadlineHint"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:width="150dp"
-                android:autofillHints="@string/taskDeadlineHint"
-                android:hint="@string/taskDeadlineHint"
-                android:inputType="date"
+                android:inputType="text"
                 android:textColor="@color/black"
-                android:textColorHint="#78909C"
                 android:textSize="20sp"
                 android:textStyle="italic"
                 tools:ignore="LabelFor,TextFields" />
@@ -185,7 +159,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="330dp"
         android:layout_marginTop="80dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -202,48 +176,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975">
-
-        <Button
-            android:id="@+id/view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:backgroundTint="@color/peach"
-            android:text="@string/view"
-            android:textColor="@color/black"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:id="@+id/edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:backgroundTint="@color/peach"
-            android:text="@string/edit"
-            android:textColor="@color/black"
-            tools:ignore="ButtonStyle" />
-
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:backgroundTint="@color/peach"
-            android:text="@string/delete"
-            android:textColor="@color/black"
-            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
     <Button
