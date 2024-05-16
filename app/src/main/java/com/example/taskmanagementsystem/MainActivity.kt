@@ -1,6 +1,7 @@
 package com.example.taskmanagementsystem
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -47,9 +48,9 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
         findViewById<Button>(R.id.view).setOnClickListener {
             displayTasks()
         }
-        findViewById<Button>(R.id.edit).setOnClickListener {
-            updateTask()
-        }
+//        findViewById<Button>(R.id.edit).setOnClickListener {
+//            updateTask()
+//        }
         findViewById<Button>(R.id.delete).setOnClickListener {
             deleteTask()
         }
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
     }
 
     private fun setupRecyclerView() {
-        adapter = TaskAdapter(emptyList(), this::deleteTaskFromAdapter)
+        adapter = TaskAdapter(emptyList(), this::deleteTaskFromAdapter, this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
@@ -97,37 +98,76 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
     }
 
 
-    private fun updateTask() {
-        val dialogBuilder = AlertDialog.Builder(this)
-        val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.update_dialoge, null)
-        dialogBuilder.setView(dialogView)
+//    private fun updateTask() {
+//        val dialogBuilder = AlertDialog.Builder(this)
+//        val inflater = layoutInflater
+//        val dialogView = inflater.inflate(R.layout.update_dialoge, null)
+//        dialogBuilder.setView(dialogView)
+//
+//        val edtTaskId = dialogView.findViewById<EditText>(R.id.updateTaskId)
+//        val edtTaskName = dialogView.findViewById<EditText>(R.id.updateTaskName)
+//        val edtTaskDescription = dialogView.findViewById<EditText>(R.id.updateTaskDescription)
+//        val edtTaskPriority = dialogView.findViewById<EditText>(R.id.updateTaskPriority)
+//        val edtTaskDeadline = dialogView.findViewById<EditText>(R.id.updateTaskDeadline)
+//
+//        dialogBuilder.setTitle("Update Task")
+//        dialogBuilder.setPositiveButton("Update") { _, _ ->
+//            val taskId = edtTaskId.text.toString().toIntOrNull()
+//            val taskName = edtTaskName.text.toString()
+//            val taskDescription = edtTaskDescription.text.toString()
+//            val taskPriority = edtTaskPriority.text.toString().toIntOrNull() ?: 0
+//            val taskDeadline = edtTaskDeadline.text.toString()
+//
+//            if (taskId != null && taskName.isNotEmpty() && taskDescription.isNotEmpty() && taskPriority > 0 && taskDeadline.isNotEmpty()) {
+//                val task = Task(taskId, taskName, taskDescription, taskPriority, taskDeadline)
+//                taskViewModel.updateTask(task)
+//                showToast("Task updated successfully")
+//            } else {
+//                showToast("Please fill all the fields correctly")
+//            }
+//        }
+//        dialogBuilder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+//        dialogBuilder.show()
+//    }
 
+    @SuppressLint("InflateParams")
+    private fun showUpdateDialog(task: Task) {
+        val dialogView = layoutInflater.inflate(R.layout.update_dialoge, null)
         val edtTaskId = dialogView.findViewById<EditText>(R.id.updateTaskId)
         val edtTaskName = dialogView.findViewById<EditText>(R.id.updateTaskName)
         val edtTaskDescription = dialogView.findViewById<EditText>(R.id.updateTaskDescription)
         val edtTaskPriority = dialogView.findViewById<EditText>(R.id.updateTaskPriority)
         val edtTaskDeadline = dialogView.findViewById<EditText>(R.id.updateTaskDeadline)
 
-        dialogBuilder.setTitle("Update Task")
-        dialogBuilder.setPositiveButton("Update") { _, _ ->
-            val taskId = edtTaskId.text.toString().toIntOrNull()
-            val taskName = edtTaskName.text.toString()
-            val taskDescription = edtTaskDescription.text.toString()
-            val taskPriority = edtTaskPriority.text.toString().toIntOrNull() ?: 0
-            val taskDeadline = edtTaskDeadline.text.toString()
+        // Pre-fill the dialog with the task details
+        edtTaskId.setText(task.taskId.toString())
+        edtTaskName.setText(task.taskName)
+        edtTaskDescription.setText(task.taskDes)
+        edtTaskPriority.setText(task.priority.toString())
+        edtTaskDeadline.setText(task.deadLine)
 
-            if (taskId != null && taskName.isNotEmpty() && taskDescription.isNotEmpty() && taskPriority > 0 && taskDeadline.isNotEmpty()) {
-                val task = Task(taskId, taskName, taskDescription, taskPriority, taskDeadline)
-                taskViewModel.updateTask(task)
-                showToast("Task updated successfully")
-            } else {
-                showToast("Please fill all the fields correctly")
+        val dialogBuilder = AlertDialog.Builder(this).apply {
+            setView(dialogView)
+            setTitle("Update Task")
+            setPositiveButton("Update") { _, _ ->
+                updateTask(task.copy(
+                    taskId = edtTaskId.text.toString().toInt(),
+                    taskName = edtTaskName.text.toString(),
+                    taskDes = edtTaskDescription.text.toString(),
+                    priority = edtTaskPriority.text.toString().toInt(),
+                    deadLine = edtTaskDeadline.text.toString()
+                ))
             }
+            setNegativeButton("Cancel", null)
         }
-        dialogBuilder.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         dialogBuilder.show()
     }
+
+    private fun updateTask(task: Task) {
+        taskViewModel.updateTask(task)
+        showToast("Task updated successfully")
+    }
+
 
     private fun deleteTask() {
         val dialogBuilder = AlertDialog.Builder(this)
@@ -162,6 +202,6 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(task: Task) {
-        TODO("Not yet implemented")
+        showUpdateDialog(task)
     }
 }

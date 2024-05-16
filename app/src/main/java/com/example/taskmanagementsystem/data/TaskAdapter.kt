@@ -11,16 +11,27 @@ import com.example.taskmanagementsystem.R
 
 class TaskAdapter(
     private var tasks: List<Task>,
-    private val onDeleteClick: (Task) -> Unit
+    private val onDeleteClick: (Task) -> Unit,
+    private val listener: OnItemClickListener
     ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
         val taskId: TextView = itemView.findViewById(R.id.textViewTaskId)
         val taskName: TextView = itemView.findViewById(R.id.textViewTaskName)
         val taskDescription: TextView = itemView.findViewById(R.id.textViewTaskDescription)
         val taskPriority: TextView = itemView.findViewById(R.id.textViewTaskPriority)
         val taskDeadline: TextView = itemView.findViewById(R.id.textViewTaskDeadline)
         val doneButton: Button = itemView.findViewById(R.id.buttonDone)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(tasks[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -51,5 +62,7 @@ class TaskAdapter(
     interface OnItemClickListener {
         fun onItemClick(task: Task)
     }
+
+
 
 }
