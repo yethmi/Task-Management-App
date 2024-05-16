@@ -27,11 +27,13 @@
         android:id="@+id/imageView"
         android:layout_width="315dp"
         android:layout_height="311dp"
+        android:contentDescription="@string/todo"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:foregroundGravity="center"
         app:layout_constraintVertical_bias="0.350"
-        app:srcCompat="@drawable/front_image" />
+        app:srcCompat="@drawable/front_image"
+        tools:ignore="ImageContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

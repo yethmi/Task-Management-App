@@ -2,11 +2,11 @@ package com.example.taskmanagementsystem.data
 
 class TaskRepository(private val taskDao: TaskDAO) {
     suspend fun insertTask(task: Task) {
-        taskDao.insertTasks(task)
+        taskDao.insertTask(task)
     }
 
     suspend fun updateTask(task: Task) {
-        taskDao.updateTasks(task)
+        taskDao.updateTask(task)
     }
 
     suspend fun deleteTask(taskId: Int) {

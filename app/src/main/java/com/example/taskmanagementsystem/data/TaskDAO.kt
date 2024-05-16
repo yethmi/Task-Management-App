@@ -12,11 +12,12 @@ interface TaskDAO {
     suspend fun getAllTasks(): List<Task>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertTasks(book: Task)
+    suspend fun insertTask(task: Task)  // Corrected from insertTasks to insertTask
 
     @Update
-    suspend fun updateTasks(book: Task)
+    suspend fun updateTask(task: Task)  // Corrected from updateTasks to updateTask
 
     @Query("DELETE FROM TaskTable WHERE taskId = :taskId")
     suspend fun deleteTask(taskId: Int)
 }
+

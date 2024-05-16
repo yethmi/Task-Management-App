@@ -13,7 +13,8 @@
         android:ems="10"
         android:hint="@string/taskNameHint"
         android:minHeight="48dp"
-        tools:ignore="Autofill,TextFields" />
+        android:textColorHint="#546E7A"
+        tools:ignore="Autofill,TextFields,DuplicateSpeakableTextCheck" />
 
     <EditText
         android:id="@+id/updateTaskName"
@@ -22,6 +23,7 @@
         android:ems="10"
         android:hint="@string/taskNameHint"
         android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         tools:ignore="Autofill,TextFields" />
 
     <EditText
@@ -49,7 +51,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/taskDeadlineHint"
-        android:minHeight="48dp"
         android:inputType="date"
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
         tools:ignore="Autofill,TextFields" />
 </LinearLayout>

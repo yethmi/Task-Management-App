@@ -1,5 +1,6 @@
 package com.example.taskmanagementsystem.data
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanagementsystem.R
 
-class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private var tasks: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val taskId: TextView = itemView.findViewById(R.id.textViewTaskId)
@@ -28,8 +29,15 @@ class TaskAdapter(private val tasks: List<Task>) : RecyclerView.Adapter<TaskAdap
         holder.taskName.text = currentTask.taskName
         holder.taskDescription.text = currentTask.taskDes
         holder.taskPriority.text = currentTask.priority.toString()
-        holder.taskDeadline.text = currentTask.deadLine.toString() // Format date as needed
+        holder.taskDeadline.text = currentTask.deadLine // Format date as needed
     }
 
     override fun getItemCount() = tasks.size
+
+    // Method to update the tasks list and refresh the RecyclerView
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateTasks(newTasks: List<Task>) {
+        tasks = newTasks
+        notifyDataSetChanged() // Notifies the adapter to rebind and display new data
+    }
 }
