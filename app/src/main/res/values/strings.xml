@@ -17,4 +17,5 @@
     <string name="edit">Update</string>
     <string name="delete">Delete</string>
     <string name="todo">TODO</string>
+    <string name="done_button">Done</string>
 </resources>

@@ -39,9 +39,7 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
         taskDeadlineEditText = findViewById(R.id.task_deadline)
         recyclerView = findViewById(R.id.recyclerView)
 
-        adapter = TaskAdapter(emptyList())
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        setupRecyclerView()
 
         findViewById<Button>(R.id.add).setOnClickListener {
             addTask()
@@ -60,6 +58,16 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
         taskViewModel.allTasks.observe(this) { tasks ->
             adapter.updateTasks(tasks)
         }
+    }
+
+    private fun setupRecyclerView() {
+        adapter = TaskAdapter(emptyList(), this::deleteTaskFromAdapter)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+    private fun deleteTaskFromAdapter(task: Task) {
+        taskViewModel.deleteTask(task.taskId)
+        showToast("Task deleted successfully")
     }
 
     private fun addTask() {
@@ -87,20 +95,6 @@ class MainActivity : AppCompatActivity(), TaskAdapter.OnItemClickListener {
             }
         }
     }
-
-//    private fun displayTasks() {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            val database = TaskDatabase.getInstance(this@MainActivity)
-//            val tasks = database.taskDao().getAllTasks()
-//
-//            Log.d(TAG, "Displaying tasks...")
-//
-//            // Pass the list of tasks to the adapter constructor
-//            val adapter = TaskAdapter(tasks)
-//            recyclerView.adapter = adapter
-//        }
-//    }
-
 
 
     private fun updateTask() {
